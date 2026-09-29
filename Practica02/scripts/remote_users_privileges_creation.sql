@@ -45,7 +45,8 @@ GRANT 'seller' TO 'aylin.esteban'@'%';
 SET DEFAULT ROLE ALL TO 
   'marco.ramirez'@'%', 
   'luis.cazarez'@'%', 
-  'jose.castillo'@'%';
+  'jose.castillo'@'%',
+  'aylin.esteban'@'%';
 
 -- 7. REFRESCAR PRIVILEGIOS
 FLUSH PRIVILEGES;
