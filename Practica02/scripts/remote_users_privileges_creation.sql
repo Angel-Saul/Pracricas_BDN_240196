@@ -4,7 +4,7 @@ CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123'; -- Prof
 CREATE USER IF NOT EXISTS 'luis.cazarez'@'%' IDENTIFIED BY '240343'; -- suport 
 CREATE USER IF NOT EXISTS 'jose.castillo'@'%' IDENTIFIED BY '240628'; -- segundo vendedor
 CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240598'; -- primer vendedor 
-CREATE USER IF NOT EXISTS 'aylin.esteban'@'%' IDENTIFIED BY '240873'; -- usuario 
+CREATE USER IF NOT EXISTS 'aylin.esteban'@'%' IDENTIFIED BY '240853'; -- usuario 
 CREATE USER IF NOT EXISTS 'juan.reyes'@'%' IDENTIFIED BY '240148'; -- usuario  
 
 -- 2. ASIGNACION DE PRIVILEGIOS DE SUPERUSUARIO
@@ -30,7 +30,6 @@ GRANT ALL PRIVILEGES ON *.* TO 'superadmin';
 GRANT ALL PRIVILEGES ON db_test.* TO 'admin';
 -- SUPPORT
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_users TO 'support';
-GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'support';
 -- SELLER
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
 
