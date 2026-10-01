@@ -30,7 +30,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'superadmin';
 GRANT ALL PRIVILEGES ON db_test.* TO 'admin';
 -- SUPPORT
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_users TO 'support';
-GRANT SELECT ON db_test.tbc_categories TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'support';
 GRANT SELECT, INSERT,  UPDATE ON db_test.tbd_products_categories TO 'support';
 -- SELLER
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
@@ -50,6 +50,9 @@ SET DEFAULT ROLE ALL TO
   'luis.cazarez'@'%', 
   'jose.castillo'@'%',
   'aylin.esteban'@'%';
+
+
+SET DEFAULT ROLE 'support' TO 'luis.cazarez'@'%';
 
 
 SET DEFAULT ROLE 'superadmin' TO 'angel.barrios'@'%';
