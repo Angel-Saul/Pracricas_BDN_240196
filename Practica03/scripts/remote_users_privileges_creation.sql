@@ -29,6 +29,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'superadmin';
 -- ADMIN
 GRANT ALL PRIVILEGES ON db_test.* TO 'admin';
 -- SUPPORT
+GRANT SELECT, UPDATE ON db_test.tb_products to 'support';
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_users TO 'support';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'support';
 GRANT SELECT, INSERT,  UPDATE ON db_test.tbd_products_categories TO 'support';
@@ -44,18 +45,11 @@ GRANT 'seller' TO 'jose.castillo'@'%';
 GRANT 'seller' TO 'aylin.esteban'@'%';
 
 -- 6. ACTIVACION AUTOMATICA DE ROLES PARA TODOS LOS USUARIOS (CRITICO)
-SET DEFAULT ROLE ALL TO 
-  'angel.barrios'@'%',
-  'marco.ramirez'@'%', 
-  'luis.cazarez'@'%', 
-  'jose.castillo'@'%',
-  'aylin.esteban'@'%';
-
-
-SET DEFAULT ROLE 'support' TO 'luis.cazarez'@'%';
-
-
 SET DEFAULT ROLE 'superadmin' TO 'angel.barrios'@'%';
+SET DEFAULT ROLE 'admin'      TO 'marco.ramirez'@'%';
+SET DEFAULT ROLE 'support'    TO 'luis.cazarez'@'%';
+SET DEFAULT ROLE 'seller'     TO 'jose.castillo'@'%';
+SET DEFAULT ROLE 'seller'     TO 'aylin.esteban'@'%';
 -- 7. REFRESCAR PRIVILEGIOS
 FLUSH PRIVILEGES;
 
