@@ -33,6 +33,7 @@ GRANT SELECT, UPDATE ON db_test.tb_products to 'support';
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_users TO 'support';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbc_categories TO 'support';
 GRANT SELECT, INSERT,  UPDATE ON db_test.tbd_products_categories TO 'support';
+GRANT EXECUTE ON PROCEDURE db_test.sp_soft_delete_user TO 'support'@'%';
 -- SELLER
 GRANT SELECT, INSERT, UPDATE ON db_test.tb_products TO 'seller';
 GRANT SELECT ON db_test.tbc_categories TO 'seller';
