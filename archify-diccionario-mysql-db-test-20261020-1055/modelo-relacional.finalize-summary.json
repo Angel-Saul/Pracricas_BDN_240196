@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\candidate.json",
+    "sha256": "36968ee5095d159a32463c4cf41ca9176463cb80813bf4dca71a7af55098d55d",
+    "bytes": 22946
+  },
+  "artifact": {
+    "path": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.html",
+    "sha256": "53b1aa8e387abc6d54196a127036fc794104bcbc823fa032f8d54bea19e3a48c",
+    "bytes": 923152
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows 4 viewport/theme combinations.",
+      "subject": {},
+      "evidence": {
+        "overflows": [
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1440,
+              "scrollHeight": 916,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 78,
+                "diagramChromePx": 78,
+                "svgPx": 748,
+                "cardsPx": 0,
+                "viewBoxHeight": 1674
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1600,
+              "scrollHeight": 1071,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 837,
+                "cardsPx": 0,
+                "viewBoxHeight": 1674
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1920,
+              "scrollHeight": 1249,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 86,
+                "diagramChromePx": 84,
+                "svgPx": 1015,
+                "cardsPx": 0,
+                "viewBoxHeight": 1674
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "dark"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1440,
+              "scrollHeight": 916,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 78,
+                "diagramChromePx": 78,
+                "svgPx": 748,
+                "cardsPx": 0,
+                "viewBoxHeight": 1674
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          }
+        ]
+      },
+      "supportedFixes": [
+        "contain the rendered layout within 1440x900 (smallest reported viewport), then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1440x900.",
+      "subject": {
+        "artifact": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.023248090335437,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1600x1000.",
+      "subject": {
+        "artifact": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.501494520092993,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1920x1080.",
+      "subject": {
+        "artifact": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.html",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.457987379608103,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 2048x1320.",
+      "subject": {
+        "artifact": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.5895051477914315,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 5,
+    "shown": 5,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.finalize.json",
+    "summaryReceipt": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\PC-26\\Pracricas_BDN_240196\\archify-diccionario-mysql-db-test-20261020-1055\\modelo-relacional.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-20T16:59:33.627Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2711,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}
