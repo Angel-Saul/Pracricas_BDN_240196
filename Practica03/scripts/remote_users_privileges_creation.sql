@@ -44,6 +44,10 @@ GRANT SELECT, INSERT, UPDATE ON db_test.tbd_carts_items TO 'buyer';
 GRANT SELECT, INSERT ON db_test.tb_buyer_orders TO 'buyer';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbd_users_wishlist_products TO 'buyer';
 
+-- Common
+GRANT INSERT ON db_test.tb_people to 'common';
+GRANT INSERT ON db_test.tb_users to 'common';
+
 
 -- 5. ASIGNACION DE ROLES A LOS USUARIOS
 GRANT 'superadmin' TO 'angel.barrios'@'%';
