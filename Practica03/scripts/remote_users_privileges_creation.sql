@@ -6,6 +6,9 @@ CREATE USER IF NOT EXISTS 'jose.castillo'@'%' IDENTIFIED BY '240628'; -- segundo
 CREATE USER IF NOT EXISTS 'jonhy.neri'@'%' IDENTIFIED BY '240598'; -- primer vendedor 
 CREATE USER IF NOT EXISTS 'aylin.esteban'@'%' IDENTIFIED BY '240853'; -- usuario 
 CREATE USER IF NOT EXISTS 'juan.reyes'@'%' IDENTIFIED BY '240148'; -- usuario  
+CREATE USER IF NOT EXISTS 'app_web'@'%' IDENTIFIED BY 'Web123';
+CREATE USER IF NOT EXISTS 'app_movil'@'%' IDENTIFIED BY 'Mobile890';
+
 
 -- 2. ASIGNACION DE PRIVILEGIOS DE SUPERUSUARIO
 GRANT ALL PRIVILEGES ON *.* TO 'angel.barrios'@'%';
@@ -45,8 +48,8 @@ GRANT SELECT, INSERT ON db_test.tb_buyer_orders TO 'buyer';
 GRANT SELECT, INSERT, UPDATE ON db_test.tbd_users_wishlist_products TO 'buyer';
 
 -- Common
-GRANT INSERT ON db_test.tb_people to 'common';
-GRANT INSERT ON db_test.tb_users to 'common';
+GRANT INSERT ON db_test.tb_people to 'user_not_registered';
+GRANT INSERT ON db_test.tb_users to 'user_not_registered';
 
 
 -- 5. ASIGNACION DE ROLES A LOS USUARIOS
@@ -55,6 +58,8 @@ GRANT 'admin' TO 'marco.ramirez'@'%';
 GRANT 'support' TO 'luis.cazarez'@'%';
 GRANT 'seller' TO 'jose.castillo'@'%';
 GRANT 'seller' TO 'aylin.esteban'@'%';
+GRANT 'user_not_registered' TO 'app_web'@'%';
+GRANT 'user_not_registered' TO 'app_movil'@'%';
 
 -- 6. ACTIVACION AUTOMATICA DE ROLES PARA TODOS LOS USUARIOS (CRITICO)
 SET DEFAULT ROLE 'superadmin' TO 'angel.barrios'@'%';
@@ -62,6 +67,8 @@ SET DEFAULT ROLE 'admin'      TO 'marco.ramirez'@'%';
 SET DEFAULT ROLE 'support'    TO 'luis.cazarez'@'%';
 SET DEFAULT ROLE 'seller'     TO 'jose.castillo'@'%';
 SET DEFAULT ROLE 'seller'     TO 'aylin.esteban'@'%';
+SET DEFAULT ROLE 'user_not_registered'     TO 'app_movil'@'%';
+SET DEFAULT ROLE 'user_not_registered'     TO 'app_web'@'%';
 -- 7. REFRESCAR PRIVILEGIOS
 FLUSH PRIVILEGES;
 
