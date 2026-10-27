@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\archify-diccionario-mysql-20261027-1110\\candidate.json",
+    "sha256": "cbf896939d81a4a6c21d4a0877072b25f2feb603f7509daa4a13dfe50fde50e7",
+    "bytes": 30962
+  },
+  "artifact": {
+    "path": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\.archify\\diccionario-mysql-20261027-1110\\modelo-relacional.html",
+    "sha256": "f59f88dd09d59b3235bf840fa044afe8f38774a65fc5efedd4e7e741bdedc82f",
+    "bytes": 988056
+  },
+  "gates": {
+    "validate": "fail",
+    "deliver": "not-run",
+    "check": "not-run",
+    "browser-check": "not-run"
+  },
+  "failedStage": "validate",
+  "diagnostics": [
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_buyer_orders\" attribute 4 \"fulfillment_status\" needs 625px of text but only 426px is available — For this attribute row's text capacity, set entities[0].width to at least 679px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_buyer_orders",
+        "attributeIndex": 4,
+        "attributeName": "fulfillment_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 679,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 624.5,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[0].width to at least 679px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_order_cancellations\" attribute 4 \"cancellation_status\" needs 455px of text but only 426px is available — For this attribute row's text capacity, set entities[3].width to at least 509px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_order_cancellations",
+        "attributeIndex": 4,
+        "attributeName": "cancellation_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 509,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 454.69999999999993,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[3].width to at least 509px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_payment_transactions\" attribute 2 \"event_type\" needs 572px of text but only 426px is available — For this attribute row's text capacity, set entities[4].width to at least 626px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_payment_transactions",
+        "attributeIndex": 2,
+        "attributeName": "event_type"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 626,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 571.7,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[4].width to at least 626px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_payments\" attribute 7 \"payment_status\" needs 573px of text but only 426px is available — For this attribute row's text capacity, set entities[5].width to at least 627px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_payments",
+        "attributeIndex": 7,
+        "attributeName": "payment_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 627,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 572.9,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[5].width to at least 627px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_refunds\" attribute 3 \"refund_status\" needs 485px of text but only 426px is available — For this attribute row's text capacity, set entities[8].width to at least 539px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_refunds",
+        "attributeIndex": 3,
+        "attributeName": "refund_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 539,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 484.4,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[8].width to at least 539px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_seller_orders\" attribute 5 \"fulfillment_status\" needs 625px of text but only 426px is available — For this attribute row's text capacity, set entities[9].width to at least 679px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_seller_orders",
+        "attributeIndex": 5,
+        "attributeName": "fulfillment_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 679,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 624.5,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[9].width to at least 679px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_shipments\" attribute 4 \"shipment_status\" needs 637px of text but only 426px is available — For this attribute row's text capacity, set entities[10].width to at least 691px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_shipments",
+        "attributeIndex": 4,
+        "attributeName": "shipment_status"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 691,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 636.1999999999999,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[10].width to at least 691px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tbb_orders\" attribute 5 \"status_string\" needs 668px of text but only 426px is available — For this attribute row's text capacity, set entities[13].width to at least 722px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tbb_orders",
+        "attributeIndex": 5,
+        "attributeName": "status_string"
+      },
+      "evidence": {
+        "entityWidth": 480,
+        "requiredEntityWidth": 722,
+        "availableTextWidth": 426,
+        "requiredTextWidth": 667.1,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[13].width to at least 722px, preserving the attribute name, type and key roles."
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 10,
+    "shown": 8,
+    "truncated": true,
+    "omittedByCode": {
+      "erd/attribute-text-capacity": 2
+    }
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\.archify\\diccionario-mysql-20261027-1110\\review-2\\modelo-relacional.finalize.json",
+    "summaryReceipt": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\.archify\\diccionario-mysql-20261027-1110\\review-2\\modelo-relacional.finalize-summary.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-27T16:59:01.838Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 462,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "nextAction": {
+    "action": "edit-in-place",
+    "candidate": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\archify-diccionario-mysql-20261027-1110\\candidate.json",
+    "constraint": "Preserve unaffected semantics and geometry; apply each diagnostic's supportedFixes, or the fix its message names, and do not replace the whole candidate.",
+    "then": "finalize-once"
+  }
+}
