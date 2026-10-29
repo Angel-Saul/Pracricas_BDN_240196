@@ -1,0 +1,1217 @@
+{
+    "schema_version":  1,
+    "diagram_type":  "erd",
+    "meta":  {
+                 "title":  "Modelo EER Â· db_test",
+                 "locale":  "es",
+                 "output":  "archify-erd-20261014-181555/db-test.html",
+                 "quality_profile":  "standard",
+                 "repository":  {
+                                    "url":  "https://github.com/Angel-Saul/Pracricas_BDN_240196.git",
+                                    "revision":  "718edc434fce128063cec7f48b2cb9679a55467c",
+                                    "provider":  "github",
+                                    "link_mode":  "local-only"
+                                },
+                 "legend":  {
+                                "mode":  "all",
+                                "entries":  {
+                                                "pk":  {
+                                                           "label":  "Clave primaria"
+                                                       },
+                                                "fk":  {
+                                                           "label":  "Clave forÃ¡nea"
+                                                       },
+                                                "uk":  {
+                                                           "label":  "Ãšnica"
+                                                       },
+                                                "one":  {
+                                                            "label":  "Uno"
+                                                        },
+                                                "many":  {
+                                                             "label":  "Muchos"
+                                                         }
+                                            }
+                            }
+             },
+    "layout":  {
+                   "mode":  "grid",
+                   "gapX":  58,
+                   "gapY":  34
+               },
+    "entities":  [
+                     {
+                         "id":  "tb_carts",
+                         "label":  "tb_carts",
+                         "sublabel":  "0 filas del respaldo Â· 4 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "user_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "fk",
+                                                            "uk"
+                                                        ],
+                                                "references":  "tb_users.ID"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  27,
+                                             "end_line":  35,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_logs",
+                         "label":  "tb_logs",
+                         "sublabel":  "37,259 filas del respaldo Â· 7 columnas Â· PK ID",
+                         "tag":  "operations",
+                         "row":  3,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "varchar(100) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "enum(\u0027Create\u0027,\u0027Read\u0027,\u0027Update\u0027,\u0027Delete\u0027) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "varchar(80) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "text Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "bit(1) Â· NULL Â· DEFAULT b\u00271\u0027"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  54,
+                                             "end_line":  63,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_payment_transactions",
+                         "label":  "tb_payment_transactions",
+                         "sublabel":  "0 filas del respaldo Â· 7 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  1,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "payment_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tb_payments.ID"
+                                            },
+                                            {
+                                                "name":  "event_type",
+                                                "type":  "enum(\u0027Created\u0027,\u0027Authorized\u0027,\u0027Captured\u0027,\u0027Failed\u0027,\u0027Refunded\u0027,\u0027PartiallyRefunded\u0027) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "amount",
+                                                "type":  "decimal(12,2) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "event_reference",
+                                                "type":  "varchar(150) Â· NULL Â· DEFAULT NULL"
+                                            },
+                                            {
+                                                "name":  "remarks",
+                                                "type":  "text Â· NULL"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  89,
+                                             "end_line":  101,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_payments",
+                         "label":  "tb_payments",
+                         "sublabel":  "0 filas del respaldo Â· 11 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  2,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "order_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tbb_orders.ID"
+                                            },
+                                            {
+                                                "name":  "amount",
+                                                "type":  "decimal(12,2) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "currency",
+                                                "type":  "char(3) Â· NOT NULL Â· DEFAULT \u0027MXN\u0027"
+                                            },
+                                            {
+                                                "name":  "payment_method",
+                                                "type":  "enum(\u0027Card\u0027,\u0027SPEI\u0027,\u0027Transfer\u0027,\u0027Cash\u0027) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "provider",
+                                                "type":  "varchar(50) Â· NULL Â· DEFAULT NULL Â· INDEXED"
+                                            },
+                                            {
+                                                "name":  "provider_reference",
+                                                "type":  "varchar(150) Â· NULL Â· DEFAULT NULL Â· INDEXED"
+                                            },
+                                            {
+                                                "name":  "payment_status",
+                                                "type":  "enum(\u0027Pending\u0027,\u0027Authorized\u0027,\u0027Paid\u0027,\u0027Failed\u0027,\u0027Refunded\u0027,\u0027PartiallyRefunded\u0027) Â· NOT NULL Â· DEFAULT \u0027Pending\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "paid_date",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  120,
+                                             "end_line":  137,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_products",
+                         "label":  "tb_products",
+                         "sublabel":  "15,007 filas del respaldo Â· 9 columnas Â· PK ID",
+                         "tag":  "catalog",
+                         "row":  1,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "SKU",
+                                                "type":  "varchar(50) Â· NOT NULL Â· INDEXED",
+                                                "key":  "uk"
+                                            },
+                                            {
+                                                "name":  "name",
+                                                "type":  "varchar(250) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "text Â· NULL"
+                                            },
+                                            {
+                                                "name":  "current_price",
+                                                "type":  "decimal(10,2) Â· NOT NULL Â· DEFAULT \u00270.00\u0027"
+                                            },
+                                            {
+                                                "name":  "current_stock",
+                                                "type":  "int unsigned Â· NOT NULL Â· DEFAULT \u00270\u0027"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NULL Â· DEFAULT b\u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NOT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  156,
+                                             "end_line":  168,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_seller_orders",
+                         "label":  "tb_seller_orders",
+                         "sublabel":  "0 filas del respaldo Â· 8 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  3,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "order_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tbb_orders.ID"
+                                            },
+                                            {
+                                                "name":  "seller_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tb_users.ID"
+                                            },
+                                            {
+                                                "name":  "subtotal",
+                                                "type":  "decimal(12,2) Â· NOT NULL Â· DEFAULT \u00270.00\u0027"
+                                            },
+                                            {
+                                                "name":  "shipping_cost",
+                                                "type":  "decimal(12,2) Â· NOT NULL Â· DEFAULT \u00270.00\u0027"
+                                            },
+                                            {
+                                                "name":  "fulfillment_status",
+                                                "type":  "enum(\u0027Pending\u0027,\u0027Accepted\u0027,\u0027Preparing\u0027,\u0027Sent\u0027,\u0027Delivered\u0027,\u0027Canceled\u0027,\u0027Returned\u0027) Â· NOT NULL Â· DEFAULT \u0027Pending\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  299,
+                                             "end_line":  315,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tb_users",
+                         "label":  "tb_users",
+                         "sublabel":  "9 filas del respaldo Â· 8 columnas Â· PK ID",
+                         "tag":  "identity",
+                         "row":  0,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "email",
+                                                "type":  "varchar(80) Â· NOT NULL Â· INDEXED",
+                                                "key":  "uk"
+                                            },
+                                            {
+                                                "name":  "nickname",
+                                                "type":  "varchar(100) Â· NOT NULL Â· INDEXED",
+                                                "key":  "uk"
+                                            },
+                                            {
+                                                "name":  "password",
+                                                "type":  "varchar(255) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_login",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NOT NULL Â· DEFAULT b\u00271\u0027"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  334,
+                                             "end_line":  346,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbb_orders",
+                         "label":  "tbb_orders",
+                         "sublabel":  "0 filas del respaldo Â· 9 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  4,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "key",
+                                                "type":  "varchar(40) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "User_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tb_users.ID"
+                                            },
+                                            {
+                                                "name":  "total_products",
+                                                "type":  "int Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "total_cost",
+                                                "type":  "decimal(10,3) Â· NOT NULL Â· DEFAULT \u00270.000\u0027"
+                                            },
+                                            {
+                                                "name":  "status_string",
+                                                "type":  "enum(\u0027Registered\u0027,\u0027Wishlist\u0027,\u0027Payed\u0027,\u0027Canceled\u0027,\u0027Delivered\u0027,\u0027Devolved\u0027,\u0027Attended\u0027,\u0027Sended\u0027) Â· NOT NULL Â· DEFAULT \u0027Registered\u0027"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NULL Â· DEFAULT b\u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NULL Â· DEFAULT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  474,
+                                             "end_line":  487,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbc_categories",
+                         "label":  "tbc_categories",
+                         "sublabel":  "100 filas del respaldo Â· 7 columnas Â· PK ID",
+                         "tag":  "catalog",
+                         "row":  1,
+                         "col":  1,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "name",
+                                                "type":  "varchar(120) Â· NOT NULL Â· INDEXED",
+                                                "key":  "uk"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "text Â· NULL"
+                                            },
+                                            {
+                                                "name":  "sup_id_category",
+                                                "type":  "int unsigned Â· NULL Â· DEFAULT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tbc_categories.ID"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NOT NULL Â· DEFAULT b\u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NOT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  506,
+                                             "end_line":  518,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbd_cart_items",
+                         "label":  "tbd_cart_items",
+                         "sublabel":  "0 filas del respaldo Â· 4 columnas Â· PK cart_ID+product_offer_ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  5,
+                         "attributes":  [
+                                            {
+                                                "name":  "cart_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_carts.ID"
+                                            },
+                                            {
+                                                "name":  "product_offer_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "quantity",
+                                                "type":  "int unsigned Â· NOT NULL Â· DEFAULT \u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  644,
+                                             "end_line":  653,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbd_order_items",
+                         "label":  "tbd_order_items",
+                         "sublabel":  "0 filas del respaldo Â· 8 columnas Â· PK ID",
+                         "tag":  "commerce",
+                         "row":  2,
+                         "col":  6,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· AUTO_INCREMENT Â· INDEXED",
+                                                "key":  "pk"
+                                            },
+                                            {
+                                                "name":  "seller_order_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  "fk",
+                                                "references":  "tb_seller_orders.ID"
+                                            },
+                                            {
+                                                "name":  "product_offer_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED"
+                                            },
+                                            {
+                                                "name":  "product_name",
+                                                "type":  "varchar(255) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "quantity",
+                                                "type":  "int unsigned Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "unit_price",
+                                                "type":  "decimal(12,2) Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "subtotal",
+                                                "type":  "decimal(12,2) Â· NULL"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  672,
+                                             "end_line":  687,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbd_products_categories",
+                         "label":  "tbd_products_categories",
+                         "sublabel":  "22,146 filas del respaldo Â· 5 columnas Â· PK category_ID+product_ID",
+                         "tag":  "catalog",
+                         "row":  1,
+                         "col":  2,
+                         "attributes":  [
+                                            {
+                                                "name":  "category_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tbc_categories.ID"
+                                            },
+                                            {
+                                                "name":  "product_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_products.ID"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NOT NULL Â· DEFAULT b\u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NOT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  706,
+                                             "end_line":  716,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbd_products_users_providers",
+                         "label":  "tbd_products_users_providers",
+                         "sublabel":  "0 filas del respaldo Â· 7 columnas Â· PK user_ID+product_ID",
+                         "tag":  "identity",
+                         "row":  0,
+                         "col":  1,
+                         "attributes":  [
+                                            {
+                                                "name":  "user_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_users.ID"
+                                            },
+                                            {
+                                                "name":  "product_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_products.ID"
+                                            },
+                                            {
+                                                "name":  "type_ownership",
+                                                "type":  "enum(\u0027Owner\u0027,\u0027Reseller\u0027,\u0027Distributor\u0027) Â· NULL Â· DEFAULT NULL"
+                                            },
+                                            {
+                                                "name":  "status",
+                                                "type":  "bit(1) Â· NOT NULL Â· DEFAULT b\u00271\u0027"
+                                            },
+                                            {
+                                                "name":  "avalaible_date",
+                                                "type":  "datetime Â· NOT NULL"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            },
+                                            {
+                                                "name":  "last_update",
+                                                "type":  "datetime Â· NOT NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  843,
+                                             "end_line":  855,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "tbd_wishlist_products",
+                         "label":  "tbd_wishlist_products",
+                         "sublabel":  "0 filas del respaldo Â· 3 columnas Â· PK user_ID+product_ID",
+                         "tag":  "catalog",
+                         "row":  1,
+                         "col":  3,
+                         "attributes":  [
+                                            {
+                                                "name":  "user_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_users.ID"
+                                            },
+                                            {
+                                                "name":  "product_ID",
+                                                "type":  "int unsigned Â· NOT NULL Â· INDEXED",
+                                                "key":  [
+                                                            "pk",
+                                                            "fk"
+                                                        ],
+                                                "references":  "tb_products.ID"
+                                            },
+                                            {
+                                                "name":  "creation_date",
+                                                "type":  "datetime Â· NOT NULL Â· DEFAULT CURRENT_TIMESTAMP"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  983,
+                                             "end_line":  991,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_total_products_by_category",
+                         "label":  "vw_total_products_by_category",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  4,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "category_ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "category_path",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "category_level",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "total_products",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "total_active_products",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "total_inactive_products",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "total_uncategorized_products",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1235,
+                                             "end_line":  1235,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_trazabilidad_categorias",
+                         "label":  "vw_trazabilidad_categorias",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  4,
+                         "col":  1,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1253,
+                                             "end_line":  1253,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_trazabilidad_productos",
+                         "label":  "vw_trazabilidad_productos",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  4,
+                         "col":  2,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1271,
+                                             "end_line":  1271,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_trazabilidad_productos_categorias",
+                         "label":  "vw_trazabilidad_productos_categorias",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  5,
+                         "col":  0,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1289,
+                                             "end_line":  1289,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_trazabilidad_products_users_providers",
+                         "label":  "vw_trazabilidad_products_users_providers",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  5,
+                         "col":  1,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1307,
+                                             "end_line":  1307,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     },
+                     {
+                         "id":  "vw_trazabilidad_usuarios",
+                         "label":  "vw_trazabilidad_usuarios",
+                         "sublabel":  "Vista Â· 7 columnas proyectadas Â· filas no contabilizadas",
+                         "tag":  "views",
+                         "row":  5,
+                         "col":  2,
+                         "attributes":  [
+                                            {
+                                                "name":  "ID",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "table_name",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "db_user",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "description",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_date",
+                                                "type":  "view column Â· NULL"
+                                            },
+                                            {
+                                                "name":  "operation_status",
+                                                "type":  "view column Â· NULL"
+                                            }
+                                        ],
+                         "sources":  [
+                                         {
+                                             "path":  "Practica03/backups/240196_13.10.26.sql",
+                                             "line":  1325,
+                                             "end_line":  1325,
+                                             "label":  "DefiniciÃ³n SQL"
+                                         }
+                                     ]
+                     }
+                 ],
+    "relationships":  [
+                          {
+                              "id":  "fk_1",
+                              "from":  "tb_carts",
+                              "to":  "tb_users",
+                              "label":  "user_ID â†’ ID Â· tb_carts_ibfk_1",
+                              "fromCardinality":  "one",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_2",
+                              "from":  "tb_payment_transactions",
+                              "to":  "tb_payments",
+                              "label":  "payment_ID â†’ ID Â· tb_payment_transactions_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_3",
+                              "from":  "tb_payments",
+                              "to":  "tbb_orders",
+                              "label":  "order_ID â†’ ID Â· tb_payments_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_4",
+                              "from":  "tb_seller_orders",
+                              "to":  "tbb_orders",
+                              "label":  "order_ID â†’ ID Â· tb_seller_orders_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_5",
+                              "from":  "tb_seller_orders",
+                              "to":  "tb_users",
+                              "label":  "seller_ID â†’ ID Â· tb_seller_orders_ibfk_2",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_6",
+                              "from":  "tbb_orders",
+                              "to":  "tb_users",
+                              "label":  "User_ID â†’ ID Â· fk_user_2",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_7",
+                              "from":  "tbc_categories",
+                              "to":  "tbc_categories",
+                              "label":  "sup_id_category â†’ ID Â· fk_superior_category",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_8",
+                              "from":  "tbd_cart_items",
+                              "to":  "tb_carts",
+                              "label":  "cart_ID â†’ ID Â· tbd_cart_items_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  true
+                          },
+                          {
+                              "id":  "fk_9",
+                              "from":  "tbd_order_items",
+                              "to":  "tb_seller_orders",
+                              "label":  "seller_order_ID â†’ ID Â· tbd_order_items_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "one",
+                              "identifying":  false
+                          },
+                          {
+                              "id":  "fk_10",
+                              "from":  "tbd_products_categories",
+                              "to":  "tbc_categories",
+                              "label":  "category_ID â†’ ID Â· fk_category",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_11",
+                              "from":  "tbd_products_categories",
+                              "to":  "tb_products",
+                              "label":  "product_ID â†’ ID Â· fk_product",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_12",
+                              "from":  "tbd_products_users_providers",
+                              "to":  "tb_products",
+                              "label":  "product_ID â†’ ID Â· fk_products2",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_13",
+                              "from":  "tbd_products_users_providers",
+                              "to":  "tb_users",
+                              "label":  "user_ID â†’ ID Â· fk_user1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_14",
+                              "from":  "tbd_wishlist_products",
+                              "to":  "tb_users",
+                              "label":  "user_ID â†’ ID Â· tbd_wishlist_products_ibfk_1",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          },
+                          {
+                              "id":  "fk_15",
+                              "from":  "tbd_wishlist_products",
+                              "to":  "tb_products",
+                              "label":  "product_ID â†’ ID Â· tbd_wishlist_products_ibfk_2",
+                              "fromCardinality":  "many",
+                              "toCardinality":  "many"
+                          }
+                      ],
+    "cards":  [
+                  {
+                      "dot":  "cyan",
+                      "title":  "Respaldo y conteos",
+                      "items":  [
+                                    "14 tablas Â· 6 vistas Â· 139 columnas Â· 15 claves forÃ¡neas.",
+                                    "Total identificado: 74,521 filas en INSERT; todos los conteos de tabla son exactos segÃºn las sentencias del respaldo. No equivale a filas actuales de MySQL.",
+                                    "tb_carts: 0",
+                                    "tb_logs: 37,259",
+                                    "tb_payment_transactions: 0",
+                                    "tb_payments: 0",
+                                    "tb_products: 15,007",
+                                    "tb_seller_orders: 0",
+                                    "tb_users: 9",
+                                    "tbb_orders: 0",
+                                    "tbc_categories: 100",
+                                    "tbd_cart_items: 0",
+                                    "tbd_order_items: 0",
+                                    "tbd_products_categories: 22,146",
+                                    "tbd_products_users_providers: 0",
+                                    "tbd_wishlist_products: 0"
+                                ]
+                  },
+                  {
+                      "dot":  "amber",
+                      "title":  "Ãndices y restricciones",
+                      "items":  [
+                                    "tb_carts.uk_cart_user (UNIQUE KEY): user_ID",
+                                    "tb_carts.UNIQUE (UNIQUE): user_ID",
+                                    "tb_payment_transactions.payment_ID (KEY): payment_ID",
+                                    "tb_payments.uk_payment_reference (UNIQUE KEY): provider, provider_reference",
+                                    "tb_payments.order_ID (KEY): order_ID",
+                                    "tb_products.SKU (UNIQUE KEY): SKU",
+                                    "tb_products.UNIQUE (UNIQUE): SKU",
+                                    "tb_seller_orders.uk_order_seller (UNIQUE KEY): order_ID, seller_ID",
+                                    "tb_seller_orders.seller_ID (KEY): seller_ID",
+                                    "tb_users.email (UNIQUE KEY): email",
+                                    "tb_users.nickname (UNIQUE KEY): nickname",
+                                    "tb_users.UNIQUE (UNIQUE): email",
+                                    "tb_users.UNIQUE (UNIQUE): nickname",
+                                    "tbb_orders.fk_user_2_idx (KEY): User_ID",
+                                    "tbc_categories.name (UNIQUE KEY): name",
+                                    "tbc_categories.fk_superior_category (KEY): sup_id_category",
+                                    "tbc_categories.UNIQUE (UNIQUE): name",
+                                    "tbd_cart_items.product_offer_ID (KEY): product_offer_ID",
+                                    "tbd_order_items.seller_order_ID (KEY): seller_order_ID",
+                                    "tbd_order_items.product_offer_ID (KEY): product_offer_ID",
+                                    "tbd_products_categories.fk_product (KEY): product_ID",
+                                    "tbd_products_users_providers.fk_products2 (KEY): product_ID",
+                                    "tbd_wishlist_products.product_ID (KEY): product_ID",
+                                    "tb_payment_transactions Â· tb_payment_transactions_chk_1 (CHECK): CONSTRAINT `tb_payment_transactions_chk_1` CHECK ((`amount` \u003e= 0))",
+                                    "tb_payments Â· tb_payments_chk_1 (CHECK): CONSTRAINT `tb_payments_chk_1` CHECK ((`amount` \u003e 0))",
+                                    "tb_seller_orders Â· tb_seller_orders_chk_1 (CHECK): CONSTRAINT `tb_seller_orders_chk_1` CHECK ((`subtotal` \u003e= 0))",
+                                    "tb_seller_orders Â· tb_seller_orders_chk_2 (CHECK): CONSTRAINT `tb_seller_orders_chk_2` CHECK ((`shipping_cost` \u003e= 0))",
+                                    "tbd_cart_items Â· chk_cart_quantity (CHECK): CONSTRAINT `chk_cart_quantity` CHECK ((`quantity` \u003e 0))",
+                                    "tbd_order_items Â· tbd_order_items_chk_1 (CHECK): CONSTRAINT `tbd_order_items_chk_1` CHECK ((`quantity` \u003e 0))",
+                                    "tbd_order_items Â· tbd_order_items_chk_2 (CHECK): CONSTRAINT `tbd_order_items_chk_2` CHECK ((`unit_price` \u003e= 0))"
+                                ]
+                  }
+              ]
+}

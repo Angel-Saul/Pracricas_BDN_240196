@@ -1,0 +1,9 @@
+{
+  "archivo": "respaldo_100.sql",
+  "sha256": "c01f780693b76e20aefabeff8b03714f1385bcd08ae63bf581ac3f6c875c7689",
+  "tablas": 27,
+  "columnasFisicas": 211,
+  "clavesForaneas": 28,
+  "triggers": 78,
+  "advertencias": []
+}

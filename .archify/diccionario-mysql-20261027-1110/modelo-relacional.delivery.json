@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "f20bc8b7-c341-44d9-8310-cd7d740e0e1e",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\archify-diccionario-mysql-20261027-1110\\candidate.json",
+  "output": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\.archify\\diccionario-mysql-20261027-1110\\modelo-relacional.html",
+  "specification": {
+    "sha256": "dfe14d239928b1b2a0fca182b5b01a9086f20cc3f6e8d0c26cab9237aec781fb",
+    "bytes": 30962
+  },
+  "artifact": {
+    "sha256": "a1beda54ebc7255c7c99e4984bd320b38d6b73a98dce2ba066ed06606c911a36",
+    "bytes": 988061
+  }
+}

@@ -1,0 +1,1217 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "Modelo EER · db_test",
+    "locale": "es",
+    "output": ".archify/erd-db-test-20261014-181555/db-test.html",
+    "quality_profile": "standard",
+    "repository": {
+      "url": "https://github.com/Angel-Saul/Pracricas_BDN_240196.git",
+      "revision": "718edc434fce128063cec7f48b2cb9679a55467c",
+      "provider": "github",
+      "link_mode": "local-only"
+    },
+    "legend": {
+      "mode": "all",
+      "entries": {
+        "pk": {
+          "label": "Clave primaria"
+        },
+        "fk": {
+          "label": "Clave foránea"
+        },
+        "uk": {
+          "label": "Única"
+        },
+        "one": {
+          "label": "Uno"
+        },
+        "many": {
+          "label": "Muchos"
+        }
+      }
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 58,
+    "gapY": 34
+  },
+  "entities": [
+    {
+      "id": "tb_carts",
+      "label": "tb_carts",
+      "sublabel": "0 filas del respaldo · 4 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL · DEFAULT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 27,
+          "end_line": 35,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_logs",
+      "label": "tb_logs",
+      "sublabel": "37,259 filas del respaldo · 7 columnas · PK ID",
+      "tag": "operations",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "table_name",
+          "type": "varchar(100) · NOT NULL"
+        },
+        {
+          "name": "operation",
+          "type": "enum('Create','Read','Update','Delete') · NOT NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "varchar(80) · NOT NULL"
+        },
+        {
+          "name": "description",
+          "type": "text · NOT NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "operation_status",
+          "type": "bit(1) · NULL · DEFAULT b'1'"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 54,
+          "end_line": 63,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_payment_transactions",
+      "label": "tb_payment_transactions",
+      "sublabel": "0 filas del respaldo · 7 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "payment_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tb_payments.ID"
+        },
+        {
+          "name": "event_type",
+          "type": "enum('Created','Authorized','Captured','Failed','Refunded','PartiallyRefunded') · NOT NULL"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2) · NOT NULL"
+        },
+        {
+          "name": "event_reference",
+          "type": "varchar(150) · NULL · DEFAULT NULL"
+        },
+        {
+          "name": "remarks",
+          "type": "text · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 89,
+          "end_line": 101,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_payments",
+      "label": "tb_payments",
+      "sublabel": "0 filas del respaldo · 11 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tbb_orders.ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2) · NOT NULL"
+        },
+        {
+          "name": "currency",
+          "type": "char(3) · NOT NULL · DEFAULT 'MXN'"
+        },
+        {
+          "name": "payment_method",
+          "type": "enum('Card','SPEI','Transfer','Cash') · NOT NULL"
+        },
+        {
+          "name": "provider",
+          "type": "varchar(50) · NULL · DEFAULT NULL · INDEXED"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150) · NULL · DEFAULT NULL · INDEXED"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded') · NOT NULL · DEFAULT 'Pending'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "paid_date",
+          "type": "datetime · NULL · DEFAULT NULL"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL · DEFAULT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 120,
+          "end_line": 137,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_products",
+      "label": "tb_products",
+      "sublabel": "15,007 filas del respaldo · 9 columnas · PK ID",
+      "tag": "catalog",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50) · NOT NULL · INDEXED",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(250) · NOT NULL"
+        },
+        {
+          "name": "description",
+          "type": "text · NULL"
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2) · NOT NULL · DEFAULT '0.00'"
+        },
+        {
+          "name": "current_stock",
+          "type": "int unsigned · NOT NULL · DEFAULT '0'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NULL · DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NOT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 156,
+          "end_line": 168,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_seller_orders",
+      "label": "tb_seller_orders",
+      "sublabel": "0 filas del respaldo · 8 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tbb_orders.ID"
+        },
+        {
+          "name": "seller_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2) · NOT NULL · DEFAULT '0.00'"
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2) · NOT NULL · DEFAULT '0.00'"
+        },
+        {
+          "name": "fulfillment_status",
+          "type": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') · NOT NULL · DEFAULT 'Pending'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL · DEFAULT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 299,
+          "end_line": 315,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tb_users",
+      "label": "tb_users",
+      "sublabel": "9 filas del respaldo · 8 columnas · PK ID",
+      "tag": "identity",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "email",
+          "type": "varchar(80) · NOT NULL · INDEXED",
+          "key": "uk"
+        },
+        {
+          "name": "nickname",
+          "type": "varchar(100) · NOT NULL · INDEXED",
+          "key": "uk"
+        },
+        {
+          "name": "password",
+          "type": "varchar(255) · NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_login",
+          "type": "datetime · NULL · DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NOT NULL · DEFAULT b'1'"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 334,
+          "end_line": 346,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbb_orders",
+      "label": "tbb_orders",
+      "sublabel": "0 filas del respaldo · 9 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 4,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "key",
+          "type": "varchar(40) · NOT NULL"
+        },
+        {
+          "name": "User_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "total_products",
+          "type": "int · NOT NULL"
+        },
+        {
+          "name": "total_cost",
+          "type": "decimal(10,3) · NOT NULL · DEFAULT '0.000'"
+        },
+        {
+          "name": "status_string",
+          "type": "enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended') · NOT NULL · DEFAULT 'Registered'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NULL · DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL · DEFAULT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 474,
+          "end_line": 487,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbc_categories",
+      "label": "tbc_categories",
+      "sublabel": "100 filas del respaldo · 7 columnas · PK ID",
+      "tag": "catalog",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(120) · NOT NULL · INDEXED",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text · NULL"
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int unsigned · NULL · DEFAULT NULL · INDEXED",
+          "key": "fk",
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NOT NULL · DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NOT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 506,
+          "end_line": 518,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbd_cart_items",
+      "label": "tbd_cart_items",
+      "sublabel": "0 filas del respaldo · 4 columnas · PK cart_ID+product_offer_ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 5,
+      "attributes": [
+        {
+          "name": "cart_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_carts.ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned · NOT NULL · DEFAULT '1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 644,
+          "end_line": 653,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbd_order_items",
+      "label": "tbd_order_items",
+      "sublabel": "0 filas del respaldo · 8 columnas · PK ID",
+      "tag": "commerce",
+      "row": 2,
+      "col": 6,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NOT NULL · AUTO_INCREMENT · INDEXED",
+          "key": "pk"
+        },
+        {
+          "name": "seller_order_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": "fk",
+          "references": "tb_seller_orders.ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned · NOT NULL · INDEXED"
+        },
+        {
+          "name": "product_name",
+          "type": "varchar(255) · NOT NULL"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned · NOT NULL"
+        },
+        {
+          "name": "unit_price",
+          "type": "decimal(12,2) · NOT NULL"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 672,
+          "end_line": 687,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_categories",
+      "label": "tbd_products_categories",
+      "sublabel": "22,146 filas del respaldo · 5 columnas · PK category_ID+product_ID",
+      "tag": "catalog",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NOT NULL · DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NOT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 706,
+          "end_line": 716,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_users_providers",
+      "label": "tbd_products_users_providers",
+      "sublabel": "0 filas del respaldo · 7 columnas · PK user_ID+product_ID",
+      "tag": "identity",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum('Owner','Reseller','Distributor') · NULL · DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NOT NULL · DEFAULT b'1'"
+        },
+        {
+          "name": "avalaible_date",
+          "type": "datetime · NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NOT NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 843,
+          "end_line": 855,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "tbd_wishlist_products",
+      "label": "tbd_wishlist_products",
+      "sublabel": "0 filas del respaldo · 3 columnas · PK user_ID+product_ID",
+      "tag": "catalog",
+      "row": 1,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned · NOT NULL · INDEXED",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NOT NULL · DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 983,
+          "end_line": 991,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_total_products_by_category",
+      "label": "vw_total_products_by_category",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "category_path",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "category_level",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "total_products",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "total_active_products",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "total_inactive_products",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "total_uncategorized_products",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1235,
+          "end_line": 1235,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_trazabilidad_categorias",
+      "label": "vw_trazabilidad_categorias",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "table_name",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "description",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_status",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1253,
+          "end_line": 1253,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_trazabilidad_productos",
+      "label": "vw_trazabilidad_productos",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "table_name",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "description",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_status",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1271,
+          "end_line": 1271,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_trazabilidad_productos_categorias",
+      "label": "vw_trazabilidad_productos_categorias",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "table_name",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "description",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_status",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1289,
+          "end_line": 1289,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_trazabilidad_products_users_providers",
+      "label": "vw_trazabilidad_products_users_providers",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "table_name",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "description",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_status",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1307,
+          "end_line": 1307,
+          "label": "Definición SQL"
+        }
+      ]
+    },
+    {
+      "id": "vw_trazabilidad_usuarios",
+      "label": "vw_trazabilidad_usuarios",
+      "sublabel": "Vista · 7 columnas proyectadas · filas no contabilizadas",
+      "tag": "views",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "table_name",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "db_user",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "description",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "view column · NULL"
+        },
+        {
+          "name": "operation_status",
+          "type": "view column · NULL"
+        }
+      ],
+      "sources": [
+        {
+          "path": "Practica03/backups/240196_13.10.26.sql",
+          "line": 1325,
+          "end_line": 1325,
+          "label": "Definición SQL"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "fk_1",
+      "from": "tb_carts",
+      "to": "tb_users",
+      "label": "user_ID → ID · tb_carts_ibfk_1",
+      "fromCardinality": "one",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_2",
+      "from": "tb_payment_transactions",
+      "to": "tb_payments",
+      "label": "payment_ID → ID · tb_payment_transactions_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_3",
+      "from": "tb_payments",
+      "to": "tbb_orders",
+      "label": "order_ID → ID · tb_payments_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_4",
+      "from": "tb_seller_orders",
+      "to": "tbb_orders",
+      "label": "order_ID → ID · tb_seller_orders_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_5",
+      "from": "tb_seller_orders",
+      "to": "tb_users",
+      "label": "seller_ID → ID · tb_seller_orders_ibfk_2",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_6",
+      "from": "tbb_orders",
+      "to": "tb_users",
+      "label": "User_ID → ID · fk_user_2",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_7",
+      "from": "tbc_categories",
+      "to": "tbc_categories",
+      "label": "sup_id_category → ID · fk_superior_category",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_8",
+      "from": "tbd_cart_items",
+      "to": "tb_carts",
+      "label": "cart_ID → ID · tbd_cart_items_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "fk_9",
+      "from": "tbd_order_items",
+      "to": "tb_seller_orders",
+      "label": "seller_order_ID → ID · tbd_order_items_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "fk_10",
+      "from": "tbd_products_categories",
+      "to": "tbc_categories",
+      "label": "category_ID → ID · fk_category",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_11",
+      "from": "tbd_products_categories",
+      "to": "tb_products",
+      "label": "product_ID → ID · fk_product",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_12",
+      "from": "tbd_products_users_providers",
+      "to": "tb_products",
+      "label": "product_ID → ID · fk_products2",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_13",
+      "from": "tbd_products_users_providers",
+      "to": "tb_users",
+      "label": "user_ID → ID · fk_user1",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_14",
+      "from": "tbd_wishlist_products",
+      "to": "tb_users",
+      "label": "user_ID → ID · tbd_wishlist_products_ibfk_1",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    },
+    {
+      "id": "fk_15",
+      "from": "tbd_wishlist_products",
+      "to": "tb_products",
+      "label": "product_ID → ID · tbd_wishlist_products_ibfk_2",
+      "fromCardinality": "many",
+      "toCardinality": "many"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Respaldo y conteos",
+      "items": [
+        "14 tablas · 6 vistas · 139 columnas · 15 claves foráneas.",
+        "Total identificado: 74,521 filas en INSERT; todos los conteos de tabla son exactos según las sentencias del respaldo. No equivale a filas actuales de MySQL.",
+        "tb_carts: 0",
+        "tb_logs: 37,259",
+        "tb_payment_transactions: 0",
+        "tb_payments: 0",
+        "tb_products: 15,007",
+        "tb_seller_orders: 0",
+        "tb_users: 9",
+        "tbb_orders: 0",
+        "tbc_categories: 100",
+        "tbd_cart_items: 0",
+        "tbd_order_items: 0",
+        "tbd_products_categories: 22,146",
+        "tbd_products_users_providers: 0",
+        "tbd_wishlist_products: 0"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Índices y restricciones",
+      "items": [
+        "tb_carts.uk_cart_user (UNIQUE KEY): user_ID",
+        "tb_carts.UNIQUE (UNIQUE): user_ID",
+        "tb_payment_transactions.payment_ID (KEY): payment_ID",
+        "tb_payments.uk_payment_reference (UNIQUE KEY): provider, provider_reference",
+        "tb_payments.order_ID (KEY): order_ID",
+        "tb_products.SKU (UNIQUE KEY): SKU",
+        "tb_products.UNIQUE (UNIQUE): SKU",
+        "tb_seller_orders.uk_order_seller (UNIQUE KEY): order_ID, seller_ID",
+        "tb_seller_orders.seller_ID (KEY): seller_ID",
+        "tb_users.email (UNIQUE KEY): email",
+        "tb_users.nickname (UNIQUE KEY): nickname",
+        "tb_users.UNIQUE (UNIQUE): email",
+        "tb_users.UNIQUE (UNIQUE): nickname",
+        "tbb_orders.fk_user_2_idx (KEY): User_ID",
+        "tbc_categories.name (UNIQUE KEY): name",
+        "tbc_categories.fk_superior_category (KEY): sup_id_category",
+        "tbc_categories.UNIQUE (UNIQUE): name",
+        "tbd_cart_items.product_offer_ID (KEY): product_offer_ID",
+        "tbd_order_items.seller_order_ID (KEY): seller_order_ID",
+        "tbd_order_items.product_offer_ID (KEY): product_offer_ID",
+        "tbd_products_categories.fk_product (KEY): product_ID",
+        "tbd_products_users_providers.fk_products2 (KEY): product_ID",
+        "tbd_wishlist_products.product_ID (KEY): product_ID",
+        "tb_payment_transactions · tb_payment_transactions_chk_1 (CHECK): CONSTRAINT `tb_payment_transactions_chk_1` CHECK ((`amount` >= 0))",
+        "tb_payments · tb_payments_chk_1 (CHECK): CONSTRAINT `tb_payments_chk_1` CHECK ((`amount` > 0))",
+        "tb_seller_orders · tb_seller_orders_chk_1 (CHECK): CONSTRAINT `tb_seller_orders_chk_1` CHECK ((`subtotal` >= 0))",
+        "tb_seller_orders · tb_seller_orders_chk_2 (CHECK): CONSTRAINT `tb_seller_orders_chk_2` CHECK ((`shipping_cost` >= 0))",
+        "tbd_cart_items · chk_cart_quantity (CHECK): CONSTRAINT `chk_cart_quantity` CHECK ((`quantity` > 0))",
+        "tbd_order_items · tbd_order_items_chk_1 (CHECK): CONSTRAINT `tbd_order_items_chk_1` CHECK ((`quantity` > 0))",
+        "tbd_order_items · tbd_order_items_chk_2 (CHECK): CONSTRAINT `tbd_order_items_chk_2` CHECK ((`unit_price` >= 0))"
+      ]
+    }
+  ]
+}
