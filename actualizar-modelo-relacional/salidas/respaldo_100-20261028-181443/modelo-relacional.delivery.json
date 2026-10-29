@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "24e8464d-133a-46ee-a755-9825610ef537",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\actualizar-modelo-relacional\\salidas\\respaldo_100-20261028-181443\\candidate.json",
+  "output": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\actualizar-modelo-relacional\\salidas\\respaldo_100-20261028-181443\\modelo-relacional.html",
+  "specification": {
+    "sha256": "07200fb75621492cd5b85eb93d6774559a64e0e9b84211e2215d4815bc4bb041",
+    "bytes": 35733
+  },
+  "artifact": {
+    "sha256": "047feeb6f24106a4cd54019a3a0a87e6679667a5d07f123c40554fc34b98c51b",
+    "bytes": 993071
+  }
+}

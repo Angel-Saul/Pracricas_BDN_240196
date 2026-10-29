@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cccf83ba-ba1c-4e6d-86c7-2a2507814cca",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\actualizar-modelo-relacional\\salidas\\240196_27.10.26-ajuste\\candidate.json",
+  "output": "C:\\Users\\ti_la\\Pracricas_BDN_240196\\actualizar-modelo-relacional\\salidas\\240196_27.10.26-ajuste\\modelo-relacional.html",
+  "specification": {
+    "sha256": "7e0c1069c60066a9bf3cb38668674c4265a05c2a0884e03833b77806e97458da",
+    "bytes": 34938
+  },
+  "artifact": {
+    "sha256": "8481dd8b7d30d6548685f3b08206c91347488e4fdeb1c26e0503a7025e4125be",
+    "bytes": 992253
+  }
+}
