@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "4687428e-9755-4eaa-9965-f00eb03994c8",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\chest\\BDN\\Pracricas_BDN_240196\\Practica03\\actualizar-modelo-relacional\\salidas\\240196_06.11.26-20261106-010834\\candidate.json",
+  "output": "C:\\Users\\chest\\BDN\\Pracricas_BDN_240196\\Practica03\\actualizar-modelo-relacional\\salidas\\240196_06.11.26-20261106-010834\\modelo-relacional.html",
+  "specification": {
+    "sha256": "a9136d480ea0a32707a6789c937da7b602668c52528b96827f6113de44eb5d0d",
+    "bytes": 36271
+  },
+  "artifact": {
+    "sha256": "e4f039073775472358abf73df4eddc15183ccf29e00c91d03458353d90f00672",
+    "bytes": 994747
+  }
+}
