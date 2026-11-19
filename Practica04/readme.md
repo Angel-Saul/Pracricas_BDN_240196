@@ -158,5 +158,5 @@ El generador toma la fuente indicada en `backupFile` dentro de `scripts/generar-
 ## Enlaces
 
 - [Diccionario de datos](https://angel-saul.github.io/Pracricas_BDN_240196/diccionario.html)
-- [Modelo relacional](https://angel-saul.github.io/Pracricas_BDN_240196/Practica03/actualizar-modelo-relacional/salidas/240196_19.11.26-20261106-010834/modelo-relacional.html)
-- [Informe de validación del diccionario](diccionario/informe-validacion.md)
+- [Modelo relacional](https://angel-saul.github.io/Pracricas_BDN_240196/Practica03/actualizar-modelo-relacional/salidas/240196_19.11.26-20261119-002131/modelo-relacional.html)
+
