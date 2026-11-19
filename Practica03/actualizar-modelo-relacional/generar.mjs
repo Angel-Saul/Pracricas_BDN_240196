@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, basename, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { parseDump } from '../Practica03/visor-eer/src/parser.js';
+import { parseDump } from '../visor-eer/src/parser.js';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -21,10 +21,13 @@ if (!inputPath || !outputDirArg) {
 
 const input = resolve(inputPath);
 const outputDir = resolve(outputDirArg);
+console.log(`[respaldo] Entrada: ${input}`);
+console.log(`[respaldo] Salida: ${outputDir}`);
 const sql = readFileSync(input, 'utf8');
 const model = parseDump(sql);
 if (!model.tables.length) throw new Error('No se encontraron definiciones CREATE TABLE en el archivo seleccionado.');
 mkdirSync(outputDir, { recursive: true });
+console.log(`[respaldo] SQL leído; ${model.tables.length} tablas y ${model.relationships.length} claves foráneas detectadas.`);
 
 const domains = ['identity', 'catalog', 'commerce', 'address', 'association', 'audit'];
 const domainColumn = new Map(domains.map((domain, index) => [domain, index]));
@@ -182,15 +185,28 @@ const explorerHtml = `<!doctype html>
 // Archify writes the single deliverable HTML below; the flow data is embedded into it afterward.
 
 const home = process.env.USERPROFILE || process.env.HOME;
-const archifyCli = process.env.ARCHIFY_CLI || resolve(home || projectRoot, '.agents', 'skills', 'archify', 'bin', 'archify.mjs');
-const result = spawnSync(process.execPath, [archifyCli, 'finalize', 'erd', candidatePath, outputHtml, '--quality', 'standard', '--json'], {
-  cwd: projectRoot,
-  encoding: 'utf8',
-  maxBuffer: 16 * 1024 * 1024,
-});
-if (result.error) console.warn(`No se pudo ejecutar Archify: ${result.error.message}`);
-if (result.stderr) process.stderr.write(result.stderr);
-if (result.status !== 0) {
+const archifyCandidates = [
+  process.env.ARCHIFY_CLI,
+  resolve(projectRoot, '.agents', 'skills', 'archify', 'bin', 'archify.mjs'),
+  resolve(projectRoot, '..', '.agents', 'skills', 'archify', 'bin', 'archify.mjs'),
+  resolve(home || projectRoot, '.agents', 'skills', 'archify', 'bin', 'archify.mjs'),
+].filter(Boolean);
+const archifyCli = archifyCandidates.find(candidate => existsSync(candidate));
+let result;
+if (!archifyCli) {
+  console.warn('[respaldo] Archify no está instalado en las rutas conocidas; se usará el visor HTML integrado.');
+  writeFileSync(outputHtml, explorerHtml, 'utf8');
+} else {
+  console.log(`[respaldo] Ejecutando Archify: ${archifyCli}`);
+  result = spawnSync(process.execPath, [archifyCli, 'finalize', 'erd', candidatePath, outputHtml, '--quality', 'standard', '--json'], {
+    cwd: projectRoot,
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+  });
+  if (result.error) console.warn(`No se pudo ejecutar Archify: ${result.error.message}`);
+  if (result.stderr) process.stderr.write(result.stderr);
+}
+if (result && result.status !== 0) {
   const summaryPath = resolve(outputDir, 'modelo-relacional.finalize-summary.json');
   const summary = existsSync(summaryPath) ? JSON.parse(readFileSync(summaryPath, 'utf8')) : null;
   const failedStage = summary?.failedStage || 'desconocido';
@@ -207,10 +223,10 @@ if (result.status !== 0) {
     console.error(`El candidato y el inventario quedaron en: ${outputDir}`);
     process.exit(result.status || 1);
   }
-} else {
+} else if (result) {
   console.log(result.stdout.trim());
 }
-console.log(`\nHTML de Archify: ${outputHtml}`);
+console.log(`\nHTML generado: ${outputHtml}`);
 if (!existsSync(outputHtml)) {
   throw new Error('Archify no entregó el HTML; revisa los diagnósticos anteriores.');
 }
@@ -228,4 +244,4 @@ if (!archifyHtml.includes('id="archify-flow-data"')) {
   if (close < 0) throw new Error('El HTML generado por Archify no contiene </body>.');
   writeFileSync(outputHtml, archifyHtml.slice(0, close) + flowEnhancement + '\n' + archifyHtml.slice(close), 'utf8');
 }
-console.log(`HTML de Archify con flechas y animación: ${outputHtml}`);
+console.log(`HTML con relaciones y animación: ${outputHtml}`);

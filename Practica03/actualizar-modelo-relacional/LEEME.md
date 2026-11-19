@@ -10,6 +10,6 @@ Cada ejecución crea su propia carpeta con un solo HTML: `modelo-relacional.html
 
 - Node.js disponible como `node` en PowerShell.
 - La carpeta `Practica03/visor-eer` del proyecto, que contiene el parser SQL.
-- Archify instalado en `%USERPROFILE%\.agents\skills\archify\bin\archify.mjs`. Si está en otra ruta, define la variable `ARCHIFY_CLI` antes de ejecutar el selector.
+- Archify instalado en `.agents/skills/archify/bin/archify.mjs` en la raíz del proyecto o en `%USERPROFILE%\.agents\skills\archify\bin\archify.mjs`. Si está en otra ruta, define la variable `ARCHIFY_CLI` antes de ejecutar el selector.
 
 El generador documenta las tablas, campos, claves y relaciones declarados en el respaldo. Los triggers se enumeran por tabla en una ficha del diagrama. Las vistas y rutinas SQL no forman parte del modelo relacional.
