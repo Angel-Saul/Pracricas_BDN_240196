@@ -2,11 +2,11 @@
 
 ## Fuente
 
-- Archivo: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\backups\240196_06.11.26.sql` (26,077,500 bytes).
+- Archivo: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\backups\240196_19.11.26.sql` (26,188,493 bytes).
 - Base declarada: `db_test`.
 - Cliente de respaldo: mysqldump 8.0.46. Versión indicada para el servidor: 26.7.0; ambas se leen de comentarios y no se verifican contra una instancia.
-- Generado: 6 de noviembre de 2026 a las 1:02 a.m. (America/Mexico_City).
-- SHA-256 fuente: 8326aeec4b5c49b485484618e17210ebca0d8e9326070a5f511e64549269d65f.
+- Generado: 19 de noviembre de 2026 a las 12:57 a.m. (America/Mexico_City).
+- SHA-256 fuente: 37497b11415db44c3a412a1acd61abad9bd0d900e612b581498811eff7693f4d.
 
 ## Inventario detectado
 
@@ -23,32 +23,32 @@
 
 | Tabla | Filas INSERT contadas | Estado |
 |---|---:|---|
-| `tb_buyer_orders` | 0 | Exacto |
-| `tb_carts` | 1 | Exacto |
-| `tb_logs` | 73,831 | Exacto |
-| `tb_order_cancellations` | 0 | Exacto |
-| `tb_payment_transactions` | 3 | Exacto |
-| `tb_payments` | 1 | Exacto |
+| `tb_buyer_orders` | 1 | Exacto |
+| `tb_carts` | 5 | Exacto |
+| `tb_logs` | 74,053 | Exacto |
+| `tb_order_cancellations` | 3 | Exacto |
+| `tb_payment_transactions` | 29 | Exacto |
+| `tb_payments` | 10 | Exacto |
 | `tb_people` | 10,231 | Exacto |
 | `tb_products` | 15,007 | Exacto |
-| `tb_refunds` | 0 | Exacto |
-| `tb_seller_orders` | 1 | Exacto |
-| `tb_shipments` | 1 | Exacto |
-| `tb_user_addresses` | 1 | Exacto |
+| `tb_refunds` | 1 | Exacto |
+| `tb_seller_orders` | 5 | Exacto |
+| `tb_shipments` | 5 | Exacto |
+| `tb_user_addresses` | 5 | Exacto |
 | `tb_users` | 10,240 | Exacto |
-| `tbb_orders` | 1 | Exacto |
+| `tbb_orders` | 5 | Exacto |
 | `tbc_categories` | 100 | Exacto |
 | `tbc_gen_email_domains` | 11 | Exacto |
 | `tbc_gen_family_names` | 369 | Exacto |
 | `tbc_gen_given_names` | 508 | Exacto |
 | `tbc_gen_phone_area_codes` | 145 | Exacto |
-| `tbc_payment_methods_types` | 1 | Exacto |
-| `tbd_address_components` | 7 | Exacto |
-| `tbd_carts_items` | 5 | Exacto |
-| `tbd_order_items` | 5 | Exacto |
+| `tbc_payment_methods_types` | 5 | Exacto |
+| `tbd_address_components` | 35 | Exacto |
+| `tbd_carts_items` | 22 | Exacto |
+| `tbd_order_items` | 21 | Exacto |
 | `tbd_products_categories` | 22,146 | Exacto |
 | `tbd_products_users_providers` | 14,971 | Exacto |
-| `tbd_user_payment_methods` | 1 | Exacto |
+| `tbd_user_payment_methods` | 5 | Exacto |
 | `tbd_users_wishlist_products` | 5 | Exacto |
 
 ## Cobertura y límites
@@ -76,8 +76,8 @@
 
 ## Archivos
 
-- HTML: `C:\Users\chest\BDN\Pracricas_BDN_240196\diccionario.html`
-- CSV: `C:\Users\chest\BDN\Pracricas_BDN_240196\diccionario-campos.csv`
-- Anexo SQL: `C:\Users\chest\BDN\Pracricas_BDN_240196\anexo-tecnico-mysql.sql`
-- Informe: `C:\Users\chest\BDN\Pracricas_BDN_240196\informe-validacion.md`
-- Diagrama Archify: `C:\Users\chest\BDN\Pracricas_BDN_240196\modelo-relacional.html` (mapa de campos; las FK se enumeran en su ficha).
+- HTML: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\diccionario\diccionario.html`
+- CSV: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\diccionario\diccionario-campos.csv`
+- Anexo SQL: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\diccionario\anexo-tecnico-mysql.sql`
+- Informe: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\diccionario\informe-validacion.md`
+- Diagrama Archify: `C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\diccionario\modelo-relacional.html` (mapa de campos; las FK se enumeran en su ficha).

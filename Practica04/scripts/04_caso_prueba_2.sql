@@ -13,6 +13,10 @@
 --
 -- Antes de empezar: 01_ajustes_db_test.sql y 03_ajustes_casos_2_a_5.sql.
 -- Las secciones B a F localizan la orden solas: es la que tiene 6 pagos.
+-- EJECUCIÓN: el archivo completo se puede correr de una sola vez con
+--   mysql -u angel.barrios -p --port=40196 < 04_caso_prueba_2.sql
+-- Las "secciones" indican qué usuario haría cada paso en un ambiente real
+-- (usuario de la app, vendedor, sistema); aquí todas las ejecuta el superadmin.
 -- =====================================================================
 
 
@@ -121,7 +125,7 @@ SELECT @card_number AS cuenta_simulada_16_digitos, CHAR_LENGTH(@card_number) AS 
 -- PASO 5. 6 pagos mensuales. Al pagar se ACTIVA el rol "buyer".
 --         Los primeros 5 son iguales; el 6.º absorbe el redondeo.
 -- ---------------------------------------------------------------------
-SET ROLE 'user_not_registered', 'buyer';
+-- (Todo se ejecuta como superadmin: aquí el usuario normalmente activaría el rol "buyer")
 SELECT CURRENT_ROLE() AS roles_activos;
 
 SELECT ROUND(total_cost, 2) INTO @amount FROM tbb_orders WHERE ID = @order_id;
@@ -204,9 +208,19 @@ START TRANSACTION;
 UPDATE tbb_orders SET status_string = 'Attended', last_update = NOW() WHERE ID = @order_id;
 UPDATE tb_seller_orders SET fulfillment_status = 'Accepted' WHERE order_ID = @order_id;
 
+-- Registro en tb_buyer_orders (esta tabla no tiene order_ID, así que no
+-- queda ligada a la orden; se llena con los datos del vendedor de la orden)
+INSERT INTO tb_buyer_orders (seller_ID, subtotal, shipping_cost, fulfillment_status)
+SELECT so.seller_ID, so.subtotal, so.shipping_cost, 'Accepted'
+FROM tb_seller_orders so
+WHERE so.order_ID = @order_id
+LIMIT 1;
+
 COMMIT;
 
 SELECT ID, `key`, status_string FROM tbb_orders WHERE ID = @order_id;
+SELECT ID, seller_ID, subtotal, shipping_cost, fulfillment_status
+FROM tb_buyer_orders ORDER BY ID DESC LIMIT 1;
 -- Fin de la sección B.
 
 
@@ -251,7 +265,7 @@ UPDATE tbb_orders SET status_string = 'Delivered', last_update = NOW() WHERE ID 
 -- #####################################################################
 USE db_test;
 
-SET ROLE 'user_not_registered', 'buyer';
+-- (Todo se ejecuta como superadmin: aquí el usuario normalmente activaría el rol "buyer")
 SELECT CURRENT_USER() AS usuario_conexion, CURRENT_ROLE() AS roles_activos;
 
 SET @order_id = (SELECT order_ID FROM tb_payments
@@ -403,6 +417,10 @@ SELECT o.status_string AS estado_orden, so.fulfillment_status AS estado_vendedor
 FROM tbb_orders o JOIN tb_seller_orders so ON so.order_ID = o.ID
 WHERE o.ID = @order_id;
 
--- F6. Bitácora
+-- F6. Registro en tb_buyer_orders (paso 7)
+SELECT ID, seller_ID, subtotal, shipping_cost, fulfillment_status
+FROM tb_buyer_orders ORDER BY ID DESC LIMIT 1;
+
+-- F7. Bitácora
 SELECT ID, table_name, operation, db_user, operation_date
 FROM tb_logs ORDER BY ID DESC LIMIT 60;

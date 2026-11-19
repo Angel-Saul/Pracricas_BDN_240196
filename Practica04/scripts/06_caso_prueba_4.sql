@@ -16,6 +16,10 @@
 -- registrado es SPEI. Aquí el pago se registra como 'SPEI' para que sea
 -- coherente. Si tu profesor quiere 'Cash', cambia el valor de
 -- @pay_method en el paso 5 (y 'SPEI' en las secciones B y D).
+-- EJECUCIÓN: el archivo completo se puede correr de una sola vez con
+--   mysql -u angel.barrios -p --port=40196 < 06_caso_prueba_4.sql
+-- Las "secciones" indican qué usuario haría cada paso en un ambiente real
+-- (usuario de la app, vendedor, sistema); aquí todas las ejecuta el superadmin.
 -- =====================================================================
 
 
@@ -134,7 +138,7 @@ SELECT @card_number AS cuenta_simulada_16_digitos, CHAR_LENGTH(@card_number) AS 
 -- ---------------------------------------------------------------------
 -- PASO 5. UN solo pago por el total de la compra. Activa el rol "buyer".
 -- ---------------------------------------------------------------------
-SET ROLE 'user_not_registered', 'buyer';
+-- (Todo se ejecuta como superadmin: aquí el usuario normalmente activaría el rol "buyer")
 SELECT CURRENT_ROLE() AS roles_activos;
 
 SET @pay_method = 'SPEI';        -- cámbialo a 'Cash' si te lo exigen

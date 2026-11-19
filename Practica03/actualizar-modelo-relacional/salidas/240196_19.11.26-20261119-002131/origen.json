@@ -1,0 +1,9 @@
+{
+  "archivo": "240196_19.11.26.sql",
+  "sha256": "37497b11415db44c3a412a1acd61abad9bd0d900e612b581498811eff7693f4d",
+  "tablas": 27,
+  "columnasFisicas": 213,
+  "clavesForaneas": 30,
+  "triggers": 78,
+  "advertencias": []
+}

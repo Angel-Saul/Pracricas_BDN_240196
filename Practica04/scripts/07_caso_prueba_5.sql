@@ -22,6 +22,10 @@
 -- después: el vendedor hace su conteo físico (sección C), reporta 0
 -- existencias del producto y el sistema ya no puede surtir la orden.
 -- Por eso al cancelar NO se regresa stock (esas unidades no existen).
+-- EJECUCIÓN: el archivo completo se puede correr de una sola vez con
+--   mysql -u angel.barrios -p --port=40196 < 07_caso_prueba_5.sql
+-- Las "secciones" indican qué usuario haría cada paso en un ambiente real
+-- (usuario de la app, vendedor, sistema); aquí todas las ejecuta el superadmin.
 -- =====================================================================
 
 
@@ -113,10 +117,10 @@ UPDATE tbb_orders SET address_ID = @address_id WHERE ID = @order_id;
 --         GIFT_COUPON) y se usa para pagar la orden: queda con status = 0
 --         (usado). Activa el rol "buyer".
 -- ---------------------------------------------------------------------
-SET ROLE 'user_not_registered', 'buyer';
+-- (Todo se ejecuta como superadmin: aquí el usuario normalmente activaría el rol "buyer")
 SELECT CURRENT_ROLE() AS roles_activos;
 
-SET @coupon_code = CONCAT('GIFT-', UPPER(SUBSTRING(MD5(RAND()), 1, 8)));
+SET @coupon_code = CONCAT('GIFT-', LPAD(HEX(FLOOR(RAND() * 4294967296)), 8, '0'));
 
 INSERT INTO tbd_user_payment_methods
     (user_ID, payment_method_type_ID, provider, provider_method_ref, label, last_four, is_default, status)

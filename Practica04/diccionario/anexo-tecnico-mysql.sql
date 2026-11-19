@@ -1,6 +1,6 @@
--- Anexo técnico MySQL derivado del respaldo Practica04/backups/240196_06.11.26.sql
--- Fuente: C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\backups\240196_06.11.26.sql
--- Generado: 6 de noviembre de 2026 a las 1:02 a.m. (America/Mexico_City)
+-- Anexo técnico MySQL derivado del respaldo Practica04/backups/240196_19.11.26.sql
+-- Fuente: C:\Users\chest\BDN\Pracricas_BDN_240196\Practica04\backups\240196_19.11.26.sql
+-- Generado: 19 de noviembre de 2026 a las 12:57 a.m. (America/Mexico_City)
 -- No ejecutar como restauración: se excluyeron sentencias top-level de carga de filas, DROP, LOCK, sentencias de usuarios/permisos y valores reales de registros.
 -- Los INSERT contenidos en cuerpos de triggers/procedimientos se conservan como parte de su lógica, no se ejecutaron.
 -- DEFINER fue omitido para no reproducir cuentas del servidor. Wrappers /*!version ... */ se conservan cuando forman parte de vistas/triggers.
@@ -21,7 +21,7 @@ CREATE TABLE `tb_buyer_orders` (
   CONSTRAINT `tb_buyer_orders_ibfk_1` FOREIGN KEY (`seller_ID`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `tb_buyer_orders_chk_1` CHECK ((`subtotal` >= 0)),
   CONSTRAINT `tb_buyer_orders_chk_2` CHECK ((`shipping_cost` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_carts
 CREATE TABLE `tb_carts` (
@@ -33,7 +33,7 @@ CREATE TABLE `tb_carts` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uk_cart_user` (`user_ID`),
   CONSTRAINT `tb_carts_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_logs
 CREATE TABLE `tb_logs` (
@@ -45,7 +45,7 @@ CREATE TABLE `tb_logs` (
   `operation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `operation_status` bit(1) DEFAULT b'1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=73832 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74054 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_order_cancellations
 CREATE TABLE `tb_order_cancellations` (
@@ -64,7 +64,7 @@ CREATE TABLE `tb_order_cancellations` (
   CONSTRAINT `fk_order_cancellations_order` FOREIGN KEY (`order_ID`) REFERENCES `tbb_orders` (`ID`),
   CONSTRAINT `fk_order_cancellations_user` FOREIGN KEY (`requested_by`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `chk_order_cancellation_reason` CHECK ((char_length(trim(`reason`)) > 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_payment_transactions
 CREATE TABLE `tb_payment_transactions` (
@@ -79,7 +79,7 @@ CREATE TABLE `tb_payment_transactions` (
   KEY `payment_ID` (`payment_ID`),
   CONSTRAINT `tb_payment_transactions_ibfk_1` FOREIGN KEY (`payment_ID`) REFERENCES `tb_payments` (`ID`),
   CONSTRAINT `tb_payment_transactions_chk_1` CHECK ((`amount` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_payments
 CREATE TABLE `tb_payments` (
@@ -88,7 +88,7 @@ CREATE TABLE `tb_payments` (
   `user_payment_method_ID` bigint unsigned DEFAULT NULL,
   `amount` decimal(12,2) NOT NULL,
   `currency` char(3) NOT NULL DEFAULT 'MXN',
-  `payment_method` enum('Card','SPEI','Transfer','Cash') NOT NULL,
+  `payment_method` enum('Card','SPEI','Transfer','Cash','GiftCoupon') NOT NULL,
   `provider` varchar(50) DEFAULT NULL,
   `provider_reference` varchar(150) DEFAULT NULL,
   `payment_status` enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded') NOT NULL DEFAULT 'Pending',
@@ -102,7 +102,7 @@ CREATE TABLE `tb_payments` (
   CONSTRAINT `fk_payments_user_payment_method` FOREIGN KEY (`user_payment_method_ID`) REFERENCES `tbd_user_payment_methods` (`ID`),
   CONSTRAINT `tb_payments_ibfk_1` FOREIGN KEY (`order_ID`) REFERENCES `tbb_orders` (`ID`),
   CONSTRAINT `tb_payments_chk_1` CHECK ((`amount` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_people
 CREATE TABLE `tb_people` (
@@ -155,7 +155,7 @@ CREATE TABLE `tb_refunds` (
   CONSTRAINT `fk_refunds_payment` FOREIGN KEY (`payment_ID`) REFERENCES `tb_payments` (`ID`),
   CONSTRAINT `chk_refunds_amount` CHECK ((`amount` > 0)),
   CONSTRAINT `chk_refunds_reason` CHECK ((char_length(trim(`reason`)) > 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_seller_orders
 CREATE TABLE `tb_seller_orders` (
@@ -174,7 +174,7 @@ CREATE TABLE `tb_seller_orders` (
   CONSTRAINT `tb_seller_orders_ibfk_2` FOREIGN KEY (`seller_ID`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `tb_seller_orders_chk_1` CHECK ((`subtotal` >= 0)),
   CONSTRAINT `tb_seller_orders_chk_2` CHECK ((`shipping_cost` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_shipments
 CREATE TABLE `tb_shipments` (
@@ -194,7 +194,7 @@ CREATE TABLE `tb_shipments` (
   KEY `idx_shipments_tracking` (`tracking_number`),
   CONSTRAINT `fk_shipments_seller_order` FOREIGN KEY (`seller_order_ID`) REFERENCES `tb_seller_orders` (`ID`),
   CONSTRAINT `chk_shipments_dates` CHECK (((`delivered_at` is null) or (`shipped_at` is null) or (`delivered_at` >= `shipped_at`)))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_user_addresses
 CREATE TABLE `tb_user_addresses` (
@@ -216,7 +216,7 @@ CREATE TABLE `tb_user_addresses` (
   CONSTRAINT `chk_coordinates` CHECK ((((`latitude` is null) and (`longitude` is null)) or ((`latitude` is not null) and (`longitude` is not null)))),
   CONSTRAINT `chk_latitude` CHECK ((`latitude` between -(90) and 90)),
   CONSTRAINT `chk_longitude` CHECK ((`longitude` between -(180) and 180))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tb_users
 CREATE TABLE `tb_users` (
@@ -250,7 +250,7 @@ CREATE TABLE `tbb_orders` (
   KEY `fk_orders_address` (`address_ID`),
   CONSTRAINT `fk_orders_address` FOREIGN KEY (`address_ID`) REFERENCES `tb_user_addresses` (`ID`),
   CONSTRAINT `fk_user_2` FOREIGN KEY (`User_ID`) REFERENCES `tb_users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tbc_categories
 CREATE TABLE `tbc_categories` (
@@ -330,7 +330,7 @@ CREATE TABLE `tbc_payment_methods_types` (
   `last_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code_UNIQUE` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tbd_address_components
 CREATE TABLE `tbd_address_components` (
@@ -347,7 +347,7 @@ CREATE TABLE `tbd_address_components` (
   KEY `idx_address_parent` (`address_ID`,`address_sup_ID`),
   CONSTRAINT `fk_component_address` FOREIGN KEY (`address_ID`) REFERENCES `tb_user_addresses` (`ID`) ON DELETE RESTRICT,
   CONSTRAINT `fk_component_parent` FOREIGN KEY (`address_ID`, `address_sup_ID`) REFERENCES `tbd_address_components` (`address_ID`, `ID`) ON DELETE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tbd_carts_items
 CREATE TABLE `tbd_carts_items` (
@@ -381,7 +381,7 @@ CREATE TABLE `tbd_order_items` (
   CONSTRAINT `tbd_order_items_ibfk_2` FOREIGN KEY (`provider_ID`, `product_ID`) REFERENCES `tbd_products_users_providers` (`user_ID`, `product_ID`),
   CONSTRAINT `tbd_order_items_chk_1` CHECK ((`quantity` > 0)),
   CONSTRAINT `tbd_order_items_chk_2` CHECK ((`unit_price` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tbd_products_categories
 CREATE TABLE `tbd_products_categories` (
@@ -430,7 +430,7 @@ CREATE TABLE `tbd_user_payment_methods` (
   KEY `payment_method_type_ID` (`payment_method_type_ID`),
   CONSTRAINT `tbd_user_payment_methods_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`),
   CONSTRAINT `tbd_user_payment_methods_ibfk_2` FOREIGN KEY (`payment_method_type_ID`) REFERENCES `tbc_payment_methods_types` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Tabla: tbd_users_wishlist_products
 CREATE TABLE `tbd_users_wishlist_products` (

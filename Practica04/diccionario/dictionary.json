@@ -1,9 +1,9 @@
 {
   "summary": {
     "database": "db_test",
-    "file": "Practica04/backups/240196_06.11.26.sql",
-    "absoluteFile": "C:\\Users\\chest\\BDN\\Pracricas_BDN_240196\\Practica04\\backups\\240196_06.11.26.sql",
-    "generated": "6 de noviembre de 2026 a las 1:02 a.m. (America/Mexico_City)",
+    "file": "Practica04/backups/240196_19.11.26.sql",
+    "absoluteFile": "C:\\Users\\chest\\BDN\\Pracricas_BDN_240196\\Practica04\\backups\\240196_19.11.26.sql",
+    "generated": "19 de noviembre de 2026 a las 12:57 a.m. (America/Mexico_City)",
     "serverVersion": "26.7.0",
     "dumpClientVersion": "8.0.46",
     "sourceKind": "Respaldo SQL local; no hubo conexión a instancia MySQL.",
@@ -29,37 +29,37 @@
     "rowCounts": [
       {
         "name": "tb_buyer_orders",
-        "value": 0,
+        "value": 1,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_carts",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_logs",
-        "value": 73831,
+        "value": 74053,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_order_cancellations",
-        "value": 0,
-        "status": "exact",
-        "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
-      },
-      {
-        "name": "tb_payment_transactions",
         "value": 3,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
+        "name": "tb_payment_transactions",
+        "value": 29,
+        "status": "exact",
+        "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
+      },
+      {
         "name": "tb_payments",
-        "value": 1,
+        "value": 10,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
@@ -77,25 +77,25 @@
       },
       {
         "name": "tb_refunds",
-        "value": 0,
+        "value": 1,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_seller_orders",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_shipments",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tb_user_addresses",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
@@ -107,7 +107,7 @@
       },
       {
         "name": "tbb_orders",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
@@ -143,25 +143,25 @@
       },
       {
         "name": "tbc_payment_methods_types",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tbd_address_components",
-        "value": 7,
+        "value": 35,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tbd_carts_items",
-        "value": 5,
+        "value": 22,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
       {
         "name": "tbd_order_items",
-        "value": 5,
+        "value": 21,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
@@ -179,7 +179,7 @@
       },
       {
         "name": "tbd_user_payment_methods",
-        "value": 1,
+        "value": 5,
         "status": "exact",
         "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
       },
@@ -193,17 +193,17 @@
     "exactCountTables": 27,
     "estimatedCountTables": 0,
     "unavailableCountTables": 0,
-    "totalRowsExact": 147592,
-    "averageRowsExact": 5466.37037037037,
+    "totalRowsExact": 147943,
+    "averageRowsExact": 5479.37037037037,
     "largestTable": {
       "name": "tb_logs",
-      "value": 73831,
+      "value": 74053,
       "status": "exact",
       "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
     },
     "smallestTable": {
       "name": "tb_buyer_orders",
-      "value": 0,
+      "value": 1,
       "status": "exact",
       "reason": "Filas explícitas incluidas en sentencias INSERT del respaldo."
     }
@@ -279,7 +279,7 @@
           "definition": "CONSTRAINT `tb_buyer_orders_chk_2` CHECK ((`shipping_cost` >= 0))"
         }
       ],
-      "rowCount": 0,
+      "rowCount": 1,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -491,7 +491,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Pending'. Opciones declaradas: 'Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned'.",
-          "domainObserved": "No se publican valores de filas en este diccionario. Dominio observado no enumerado por privacidad; el respaldo contiene registros.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Accepted'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -539,7 +539,7 @@
           "measurementScale": "Nominal o binaria; el orden y significado funcional están pendientes de confirmar.",
           "domainType": "Numérico o lógico según tipo",
           "domainStructural": "Valor de bits o indicador; el significado verdadero/falso depende de la regla funcional. NOT NULL: no admite NULL. DEFAULT: b'1'. Valores binarios estructurales: 0 o 1.",
-          "domainObserved": "No se publican valores de filas en este diccionario. Dominio observado no enumerado por privacidad; el respaldo contiene registros.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): \u0001.",
           "domainInferred": "No se infieren reglas funcionales adicionales al tipo o restricciones declaradas.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -667,7 +667,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 0
+      "total_registros_tabla": 1
     },
     {
       "name": "tb_carts",
@@ -738,7 +738,7 @@
           "definition": "CONSTRAINT `tb_carts_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -982,7 +982,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tb_logs",
@@ -1000,7 +1000,7 @@
       "related": [],
       "indexes": [],
       "constraints": [],
-      "rowCount": 73831,
+      "rowCount": 74053,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -1340,7 +1340,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 73831
+      "total_registros_tabla": 74053
     },
     {
       "name": "tb_order_cancellations",
@@ -1447,7 +1447,7 @@
           "definition": "CONSTRAINT `chk_order_cancellation_reason` CHECK ((char_length(trim(`reason`)) > 0))"
         }
       ],
-      "rowCount": 0,
+      "rowCount": 3,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -1659,7 +1659,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Requested'. Opciones declaradas: 'Requested','Approved','Rejected','Completed'.",
-          "domainObserved": "No se publican valores de filas en este diccionario. Dominio observado no enumerado por privacidad; el respaldo contiene registros.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Completed'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -1707,7 +1707,7 @@
           "measurementScale": "Nominal o binaria; el orden y significado funcional están pendientes de confirmar.",
           "domainType": "Numérico o lógico según tipo",
           "domainStructural": "Valor de bits o indicador; el significado verdadero/falso depende de la regla funcional. NOT NULL: no admite NULL. DEFAULT: b'0'. Valores binarios estructurales: 0 o 1.",
-          "domainObserved": "No se publican valores de filas en este diccionario. Dominio observado no enumerado por privacidad; el respaldo contiene registros.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): \u0000 | \u0001.",
           "domainInferred": "No se infieren reglas funcionales adicionales al tipo o restricciones declaradas.",
           "functionClass": "Descripción, categoría o dato operativo",
           "sensitivity": "Interna",
@@ -1883,7 +1883,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 0
+      "total_registros_tabla": 3
     },
     {
       "name": "tb_payment_transactions",
@@ -1950,7 +1950,7 @@
           "definition": "CONSTRAINT `tb_payment_transactions_chk_1` CHECK ((`amount` >= 0))"
         }
       ],
-      "rowCount": 3,
+      "rowCount": 29,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -2066,7 +2066,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: Sin DEFAULT declarado. Opciones declaradas: 'Created','Authorized','Captured','Failed','Refunded','PartiallyRefunded'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Authorized' | 'Captured' | 'Created'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Authorized' | 'Captured' | 'Created' | 'Failed' | 'PartiallyRefunded'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Descripción, categoría o dato operativo",
           "sensitivity": "Interna",
@@ -2290,7 +2290,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 3
+      "total_registros_tabla": 29
     },
     {
       "name": "tb_payments",
@@ -2408,7 +2408,7 @@
           "definition": "CONSTRAINT `tb_payments_chk_1` CHECK ((`amount` > 0))"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 10,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -2656,7 +2656,7 @@
           "label": "Medio de pago",
           "description": "Categoría del medio usado en el pago.",
           "meaning": "Categoría del medio usado en el pago. ",
-          "type": "enum('Card','SPEI','Transfer','Cash')",
+          "type": "enum('Card','SPEI','Transfer','Cash','GiftCoupon')",
           "typeMeaning": "Texto de una sola opción elegida de la lista ENUM declarada.",
           "length": "",
           "precision": "",
@@ -2667,8 +2667,8 @@
           "nature": "Categoría",
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
-          "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: Sin DEFAULT declarado. Opciones declaradas: 'Card','SPEI','Transfer','Cash'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Card'.",
+          "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: Sin DEFAULT declarado. Opciones declaradas: 'Card','SPEI','Transfer','Cash','GiftCoupon'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Card' | 'Cash' | 'GiftCoupon' | 'SPEI'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Descripción, categoría o dato operativo",
           "sensitivity": "Interna",
@@ -2691,7 +2691,7 @@
           "example": "Ejemplo ficticio: <una opción declarada>.",
           "confidence": "Interpretación contextual; contrastar con reglas de negocio de la aplicación.",
           "notes": "Diferenciar omisión en INSERT, NULL y cadena vacía. Una posibilidad estructural de omisión no confirma opcionalidad funcional.",
-          "tipo_dato_mysql": "enum('Card','SPEI','Transfer','Cash')",
+          "tipo_dato_mysql": "enum('Card','SPEI','Transfer','Cash','GiftCoupon')",
           "descripcion_dato": "Categoría del medio usado en el pago.",
           "finalidad_dato": "Categoría del medio usado en el pago. ",
           "ejemplo_ilustrativo": "Ejemplo ficticio: <una opción declarada>.",
@@ -2812,7 +2812,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Pending'. Opciones declaradas: 'Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Paid'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Failed' | 'Paid' | 'PartiallyRefunded'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -2988,7 +2988,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 10
     },
     {
       "name": "tb_people",
@@ -4193,7 +4193,7 @@
           "definition": "CONSTRAINT `chk_refunds_reason` CHECK ((char_length(trim(`reason`)) > 0))"
         }
       ],
-      "rowCount": 0,
+      "rowCount": 1,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -4357,7 +4357,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Requested'. Opciones declaradas: 'Requested','Processing','Completed','Rejected','Failed'.",
-          "domainObserved": "No se publican valores de filas en este diccionario. Dominio observado no enumerado por privacidad; el respaldo contiene registros.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Completed'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -4629,7 +4629,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 0
+      "total_registros_tabla": 1
     },
     {
       "name": "tb_seller_orders",
@@ -4744,7 +4744,7 @@
           "definition": "CONSTRAINT `tb_seller_orders_chk_2` CHECK ((`shipping_cost` >= 0))"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -5004,7 +5004,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Pending'. Opciones declaradas: 'Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Delivered'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Canceled' | 'Delivered'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -5132,7 +5132,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tb_shipments",
@@ -5207,7 +5207,7 @@
           "definition": "CONSTRAINT `chk_shipments_dates` CHECK (((`delivered_at` is null) or (`shipped_at` is null) or (`delivered_at` >= `shipped_at`)))"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -5419,7 +5419,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Pending'. Opciones declaradas: 'Pending','LabelCreated','Shipped','InTransit','Delivered','Failed','Returned'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Delivered'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Delivered' | 'Returned'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -5739,7 +5739,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tb_user_addresses",
@@ -5818,7 +5818,7 @@
           "definition": "CONSTRAINT `chk_longitude` CHECK ((`longitude` between -(180) and 180))"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -6398,7 +6398,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tb_users",
@@ -6953,7 +6953,7 @@
           "definition": "CONSTRAINT `fk_user_2` FOREIGN KEY (`User_ID`) REFERENCES `tb_users` (`ID`)"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -7261,7 +7261,7 @@
           "measurementScale": "Nominal salvo evidencia de orden funcional; pendiente de confirmar.",
           "domainType": "Enumerado",
           "domainStructural": "Texto de una sola opción elegida de la lista ENUM declarada. NOT NULL: no admite NULL. DEFAULT: 'Registered'. Opciones declaradas: 'Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attended','Sended'.",
-          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Delivered'.",
+          "domainObserved": "Valores distintos observados en filas del respaldo (no exhaustivos como dominio permitido): 'Canceled' | 'Delivered'.",
           "domainInferred": "SQL declara opciones; su uso como estados funcionales se interpreta por nombre y queda pendiente de confirmación.",
           "functionClass": "Estado",
           "sensitivity": "Interna",
@@ -7437,7 +7437,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tbc_categories",
@@ -8661,9 +8661,9 @@
         },
         {
           "name": "birth_year_from",
-          "label": "birth year from",
-          "description": "Representa “birth_year_from” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar.",
-          "meaning": "Representa “birth_year_from” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar. ",
+          "label": "Primer año de nacimiento",
+          "description": "Primer año de nacimiento en que el nombre es común",
+          "meaning": "Primer año de nacimiento en que el nombre es común ",
           "type": "smallint unsigned",
           "typeMeaning": "Número entero sin negativos; rango técnico 0 a 65535.",
           "length": "",
@@ -8700,8 +8700,8 @@
           "confidence": "Estructura confirmada; significado funcional pendiente de confirmar.",
           "notes": "Diferenciar omisión en INSERT, NULL y cadena vacía. Una posibilidad estructural de omisión no confirma opcionalidad funcional.",
           "tipo_dato_mysql": "smallint unsigned",
-          "descripcion_dato": "Representa “birth_year_from” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar.",
-          "finalidad_dato": "Representa “birth_year_from” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar. ",
+          "descripcion_dato": "Primer año de nacimiento en que el nombre es común",
+          "finalidad_dato": "Primer año de nacimiento en que el nombre es común ",
           "ejemplo_ilustrativo": "Ejemplo ficticio: 123.",
           "clasificacion_dato": "Descripción, categoría o dato operativo",
           "origen_dato": "Almacenado directamente; generación funcional pendiente de confirmar.",
@@ -8709,9 +8709,9 @@
         },
         {
           "name": "birth_year_to",
-          "label": "birth year to",
-          "description": "Representa “birth_year_to” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar.",
-          "meaning": "Representa “birth_year_to” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar. ",
+          "label": "Último año de nacimiento",
+          "description": "Último año de nacimiento en que el nombre es común",
+          "meaning": "Último año de nacimiento en que el nombre es común ",
           "type": "smallint unsigned",
           "typeMeaning": "Número entero sin negativos; rango técnico 0 a 65535.",
           "length": "",
@@ -8748,8 +8748,8 @@
           "confidence": "Estructura confirmada; significado funcional pendiente de confirmar.",
           "notes": "Diferenciar omisión en INSERT, NULL y cadena vacía. Una posibilidad estructural de omisión no confirma opcionalidad funcional.",
           "tipo_dato_mysql": "smallint unsigned",
-          "descripcion_dato": "Representa “birth_year_to” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar.",
-          "finalidad_dato": "Representa “birth_year_to” dentro de tbc_gen_given_names. El SQL confirma su tipo y restricciones; finalidad funcional específica: Pendiente de confirmar. ",
+          "descripcion_dato": "Último año de nacimiento en que el nombre es común",
+          "finalidad_dato": "Último año de nacimiento en que el nombre es común ",
           "ejemplo_ilustrativo": "Ejemplo ficticio: 123.",
           "clasificacion_dato": "Descripción, categoría o dato operativo",
           "origen_dato": "Almacenado directamente; generación funcional pendiente de confirmar.",
@@ -8757,9 +8757,9 @@
         },
         {
           "name": "weight",
-          "label": "Peso",
-          "description": "Almacena el peso relacionado con el producto. La unidad de medida no está declarada por el tipo SQL y debe confirmarse.",
-          "meaning": "Almacena el peso relacionado con el producto. La unidad de medida no está declarada por el tipo SQL y debe confirmarse. ",
+          "label": "Frecuencia relativa",
+          "description": "Frecuencia relativa",
+          "meaning": "Frecuencia relativa ",
           "type": "smallint unsigned",
           "typeMeaning": "Número entero sin negativos; rango técnico 0 a 65535.",
           "length": "",
@@ -8796,8 +8796,8 @@
           "confidence": "Interpretación contextual; contrastar con reglas de negocio de la aplicación.",
           "notes": "Diferenciar omisión en INSERT, NULL y cadena vacía. Una posibilidad estructural de omisión no confirma opcionalidad funcional.",
           "tipo_dato_mysql": "smallint unsigned",
-          "descripcion_dato": "Almacena el peso relacionado con el producto. La unidad de medida no está declarada por el tipo SQL y debe confirmarse.",
-          "finalidad_dato": "Almacena el peso relacionado con el producto. La unidad de medida no está declarada por el tipo SQL y debe confirmarse. ",
+          "descripcion_dato": "Frecuencia relativa",
+          "finalidad_dato": "Frecuencia relativa ",
           "ejemplo_ilustrativo": "Ejemplo ficticio: 123.",
           "clasificacion_dato": "Descripción, categoría o dato operativo",
           "origen_dato": "Almacenado directamente; al omitir, aplica DEFAULT declarado.",
@@ -9167,7 +9167,7 @@
         }
       ],
       "constraints": [],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -9459,7 +9459,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tbd_address_components",
@@ -9567,7 +9567,7 @@
           "definition": "CONSTRAINT `fk_component_parent` FOREIGN KEY (`address_ID`, `address_sup_ID`) REFERENCES `tbd_address_components` (`address_ID`, `ID`) ON DELETE RESTRICT"
         }
       ],
-      "rowCount": 7,
+      "rowCount": 35,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -9955,7 +9955,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 7
+      "total_registros_tabla": 35
     },
     {
       "name": "tbd_carts_items",
@@ -10061,7 +10061,7 @@
           "definition": "CONSTRAINT `chk_cart_quantity` CHECK ((`quantity` > 0))"
         }
       ],
-      "rowCount": 5,
+      "rowCount": 22,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -10305,7 +10305,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 5
+      "total_registros_tabla": 22
     },
     {
       "name": "tbd_order_items",
@@ -10422,7 +10422,7 @@
           "definition": "CONSTRAINT `tbd_order_items_chk_2` CHECK ((`unit_price` >= 0))"
         }
       ],
-      "rowCount": 5,
+      "rowCount": 21,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -10858,7 +10858,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 5
+      "total_registros_tabla": 21
     },
     {
       "name": "tbd_products_categories",
@@ -11746,7 +11746,7 @@
           "definition": "CONSTRAINT `tbd_user_payment_methods_ibfk_2` FOREIGN KEY (`payment_method_type_ID`) REFERENCES `tbc_payment_methods_types` (`ID`)"
         }
       ],
-      "rowCount": 1,
+      "rowCount": 5,
       "rowCountStatus": "exact",
       "fields": [
         {
@@ -12278,7 +12278,7 @@
           "estado_interpretacion": "Inferido"
         }
       ],
-      "total_registros_tabla": 1
+      "total_registros_tabla": 5
     },
     {
       "name": "tbd_users_wishlist_products",
